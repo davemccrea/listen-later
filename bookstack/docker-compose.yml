@@ -1,0 +1,52 @@
+services:
+  bookstack:
+    image: lscr.io/linuxserver/bookstack:latest
+    container_name: bookstack
+    env_file: .env
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Helsinki
+      - APP_URL=https://wiki.mccrea.link
+      - APP_KEY=${APP_KEY}
+      - DB_HOST=mariadb
+      - DB_PORT=3306
+      - DB_DATABASE=bookstack
+      - DB_USERNAME=bookstack
+      - DB_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - ./config:/config
+    ports:
+      - 8001:80
+    labels:
+      tsdproxy.enable: "true"
+      tsdproxy.port.1: "443/https:8001/http"
+    restart: always
+
+  mariadb:
+    image: lscr.io/linuxserver/mariadb:latest
+    container_name: mariadb
+    env_file: .env
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Helsinki
+      - MYSQL_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
+      - MYSQL_DATABASE=bookstack
+      - MYSQL_USER=bookstack
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - ./mariadb:/config
+    # ports:
+    #   - 3306:3306
+    restart: always
+
+  tunnel:
+    container_name: cloudflared-tunnel
+    image: cloudflare/cloudflared
+    restart: always
+    command: tunnel run
+    env_file: .env
+    environment:
+      - TUNNEL_TOKEN=${TUNNEL_TOKEN}
+

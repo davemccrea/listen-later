@@ -1,0 +1,123 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+STACKS_ROOT="${STACKS_ROOT:-${2:-$PWD}}"
+COMMAND="${1:-}"
+
+trap 'echo; echo "Interrupted."; exit 130' INT TERM
+
+usage() {
+    cat <<EOF
+Usage: $(basename "$0") <command> [stacks-root]
+
+Commands:
+  up      Start all stacks (docker compose up -d)
+  down    Stop all stacks (docker compose down)
+  update  Pull latest images and recreate containers
+  ports   List all host port mappings across stacks
+
+Arguments:
+  stacks-root   Directory to search for stacks (default: \$STACKS_ROOT or \$PWD)
+
+Environment:
+  STACKS_ROOT   Override the default search root
+EOF
+    exit 1
+}
+
+find_stacks() {
+    find "$STACKS_ROOT" \
+        -maxdepth 3 \
+        \( -name "docker-compose.yml" -o -name "docker-compose.yaml" \
+           -o -name "compose.yml" -o -name "compose.yaml" \) \
+        -not -path "*/node_modules/*" \
+        -not -path "*/.git/*" \
+        | xargs -I{} dirname {} \
+        | sort -u
+}
+
+run_on_stacks() {
+    local label="$1"; shift
+    local -a cmd=("$@")
+
+    mapfile -t stacks < <(find_stacks)
+
+    if [[ ${#stacks[@]} -eq 0 ]]; then
+        echo "No Docker Compose stacks found under: $STACKS_ROOT"
+        exit 1
+    fi
+
+    echo "Found ${#stacks[@]} stack(s) under $STACKS_ROOT"
+    echo
+
+    local failed=0
+    for stack in "${stacks[@]}"; do
+        echo "==> [$label] $stack"
+        if (cd "$stack" && docker compose "${cmd[@]}"); then
+            echo "    OK"
+        else
+            echo "    FAILED"
+            (( failed++ )) || true
+        fi
+        echo
+    done
+
+    if (( failed > 0 )); then
+        echo "ERROR: $failed stack(s) failed during '$label'." >&2
+        exit 1
+    fi
+}
+
+[[ -z "$COMMAND" ]] && usage
+
+case "$COMMAND" in
+    up)
+        run_on_stacks "up" up -d
+        ;;
+    down)
+        run_on_stacks "down" down
+        ;;
+    update)
+        run_on_stacks "update" pull
+        run_on_stacks "update" up -d --remove-orphans
+        ;;
+    ports)
+        mapfile -t stacks < <(find_stacks)
+        if [[ ${#stacks[@]} -eq 0 ]]; then
+            echo "No Docker Compose stacks found under: $STACKS_ROOT"
+            exit 1
+        fi
+        declare -a rows=()
+        for stack in "${stacks[@]}"; do
+            local_name=$(basename "$stack")
+            compose_file=$(find "$stack" -maxdepth 1 \
+                \( -name "docker-compose.yml" -o -name "docker-compose.yaml" \
+                   -o -name "compose.yml" -o -name "compose.yaml" \) \
+                | head -1)
+            while IFS= read -r line; do
+                # strip leading whitespace and quotes
+                port="${line#"${line%%[![:space:]]*}"}"
+                port="${port#- }"
+                port="${port//\'/}"
+                port="${port//\"/}"
+                # only host:container mappings (skip pure container ports)
+                [[ "$port" =~ ^([0-9]+):([0-9]+) ]] || continue
+                rows+=("${BASH_REMATCH[1]}|${local_name}|${BASH_REMATCH[1]} → ${BASH_REMATCH[2]}")
+            done < <(grep -E "^\s+- ['\"]?[0-9]+:[0-9]+" "$compose_file" 2>/dev/null || true)
+        done
+        # sort by port number
+        IFS=$'\n' sorted=($(printf '%s\n' "${rows[@]}" | sort -t'|' -k1,1n)); unset IFS
+        printf "%-16s %s\n" "STACK" "PORT MAPPING"
+        printf "%-16s %s\n" "-----" "------------"
+        for row in "${sorted[@]}"; do
+            name="${row#*|}"
+            name="${name%|*}"
+            mapping="${row##*|}"
+            printf "%-16s %s\n" "$name" "$mapping"
+        done
+        ;;
+    *)
+        echo "Unknown command: $COMMAND"
+        usage
+        ;;
+esac

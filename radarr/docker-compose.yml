@@ -1,0 +1,18 @@
+services:
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Helsinki
+    volumes:
+      - ./config:/config
+      - /opt/stacks/shared/downloads:/downloads
+      - /mnt/Media/Movies:/movies
+    ports:
+      - 8202:7878
+    labels:
+      tsdproxy.enable: "true"
+      tsdproxy.port.1: "443/https:8202/http"
+    restart: always

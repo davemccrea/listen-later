@@ -1,0 +1,22 @@
+services:
+  plex:
+    image: lscr.io/linuxserver/plex:latest
+    container_name: plex
+    ports:
+      - "32400:32400"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Helsinki
+      - VERSION=docker
+    volumes:
+      - ./config:/config
+      - /mnt/Media/Movies:/movies
+      - /mnt/Media/TV:/tv
+      - /mnt/Media/Music:/music
+#    devices:
+#      - /dev/dri:/dev/dri
+    labels:
+      tsdproxy.enable: "true"
+      tsdproxy.port.1: "443/https:32400/http"
+    restart: always

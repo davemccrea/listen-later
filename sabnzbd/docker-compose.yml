@@ -1,0 +1,18 @@
+services:  
+  sabnzbd:
+    image: lscr.io/linuxserver/sabnzbd:latest
+    container_name: sabnzbd
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Helsinki
+    volumes:
+      - ./config:/config
+      - /opt/stacks/shared/downloads:/downloads
+      - /opt/stacks/shared/incomplete-downloads:/incomplete-downloads
+    ports:
+      - 8204:8080
+    labels:
+      tsdproxy.enable: "true"
+      tsdproxy.port.1: "443/https:8204/http"
+    restart: always

@@ -1,0 +1,19 @@
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    env_file: .env
+    environment:
+      HOMEPAGE_ALLOWED_HOSTS: 192.168.1.102,homepage.tailfab2f.ts.net
+      PUID: 1000
+      PGID: 1000
+    ports:
+      - 80:3000
+    volumes:
+      - ./config:/app/config # Make sure your local config directory exists
+      - /var/run/docker.sock:/var/run/docker.sock:ro # optional, for docker integrations
+    labels:
+      tsdproxy.enable: "true"
+      tsdproxy.name: "homepage"
+      tsdproxy.port.1: "443/https:80/http"
+    restart: always

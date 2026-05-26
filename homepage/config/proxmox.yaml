@@ -1,0 +1,4 @@
+---
+url: https://192.168.1.100:8006
+token: api@pam!homepage
+secret: "{{HOMEPAGE_VAR_PROXMOX_TOKEN}}"

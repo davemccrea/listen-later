@@ -1,0 +1,86 @@
+---
+- Homelab:
+    - Proxmox VE:
+        href: http://192.168.1.100:8006
+        icon: proxmox.svg
+        widget:
+          type: proxmox
+          url: https://192.168.1.100:8006
+          username: api@pam!homepage
+          password: "{{HOMEPAGE_VAR_PROXMOX_TOKEN}}"
+    - OpenMediaVault:
+        href: http://192.168.1.104
+        siteMonitor: http://192.168.1.104
+        statusStyle: "dot"
+        icon: openmediavault.svg
+    - AdGuard Home:
+        href: http://192.168.1.105
+        siteMonitor: http://192.168.1.105
+        statusStyle: "dot"
+        icon: adguard-home.svg
+    - BookStack:
+        href: https://bookstack.tailfab2f.ts.net
+        siteMonitor: http://192.168.1.102:8001/login
+        statusStyle: "dot"
+        icon: bookstack.svg
+    - Paperless-ngx:
+        href: https://paperless.tailfab2f.ts.net
+        siteMonitor: http://192.168.1.102:8302
+        statusStyle: "dot"
+        icon: paperless-ngx.svg
+    - Stirling PDF:
+        href: https://stirling-pdf.tailfab2f.ts.net
+        siteMonitor: http://192.168.1.102:8303
+        statusStyle: "dot"
+        icon: stirling-pdf.svg
+
+- Home Automation:
+    - Home Assistant:
+        href: http://192.168.1.103:8123
+        siteMonitor: http://192.168.1.103:8123
+        statusStyle: "dot"
+        icon: home-assistant.svg
+
+- Media Management:
+    - Seerr:
+        href: https://seerr.tailfab2f.ts.net
+        siteMonitor: http://192.168.1.102:8200
+        statusStyle: "dot"
+        icon: overseerr.svg
+    - SABnzbd:
+        href: https://sabnzbd.tailfab2f.ts.net
+        siteMonitor: http://192.168.1.102:8204
+        statusStyle: "dot"
+        icon: sabnzbd.svg
+    - Radarr:
+        href: https://radarr.tailfab2f.ts.net
+        siteMonitor: http://192.168.1.102:8202
+        statusStyle: "dot"
+        icon: radarr.svg
+    - Sonarr:
+        href: https://sonarr.tailfab2f.ts.net
+        siteMonitor: http://192.168.1.102:8201
+        statusStyle: "dot"
+        icon: sonarr.svg
+    - Prowlarr:
+        href: https://prowlarr.tailfab2f.ts.net
+        siteMonitor: http://192.168.1.102:8203
+        statusStyle: "dot"
+        icon: prowlarr.svg
+
+- Media Viewers:
+    - Jellyfin:
+        href: https://jellyfin.tailfab2f.ts.net
+        siteMonitor: http://192.168.1.102:8100
+        statusStyle: "dot"
+        icon: jellyfin.svg
+    - Navidrome:
+        href: https://navidrome.tailfab2f.ts.net
+        siteMonitor: http://192.168.1.102:8301
+        statusStyle: "dot"
+        icon: navidrome.svg
+    - Immich:
+        href: https://immich.tailfab2f.ts.net
+        siteMonitor: http://192.168.1.102:8300
+        statusStyle: "dot"
+        icon: immich.svg

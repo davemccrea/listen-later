@@ -1,0 +1,38 @@
+# Secrets — commit .env.example instead
+**/.env
+**/docker-compose.env
+tsdproxy/config/.authkey
+
+# Service config dirs that are entirely runtime state
+bookstack/config/
+sonarr/config/
+radarr/config/
+prowlarr/config/
+navidrome/config/
+
+# Service config files that contain credentials or runtime state
+sabnzbd/config/sabnzbd.ini
+sabnzbd/config/sabnzbd.ini.bak
+sabnzbd/config/admin/
+sabnzbd/config/logs/
+seerr/config/db/
+seerr/config/logs/
+seerr/config/settings.json
+seerr/config/settings.old.json
+
+# Homepage logs (config yaml files are worth keeping)
+homepage/config/logs/
+
+# Bulk data and generated files — too large and noisy for git
+immich/library/
+immich/postgres/
+immich/model-cache/
+paperless-ngx/data/
+paperless-ngx/media/
+paperless-ngx/export/
+paperless-ngx/consume/
+paperless-ngx/pgdata/
+paperless-ngx/redisdata/
+bookstack/mariadb/
+plex/config/
+shared/
