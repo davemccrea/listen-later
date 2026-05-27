@@ -4,8 +4,6 @@ services:
     container_name: beszel
     volumes:
       - ./data:/beszel_data
-    ports:
-      - 8090:8090
     labels:
       tsdproxy.enable: "true"
       tsdproxy.name: "beszel"

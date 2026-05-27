@@ -51,8 +51,6 @@ services:
       - broker
       - gotenberg
       - tika
-    ports:
-      - "8000:8000"
     labels:
       tsdproxy.enable: "true"
       tsdproxy.name: "paperless"

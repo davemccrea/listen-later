@@ -10,8 +10,6 @@ services:
       - ./config:/config
       - /opt/stacks/shared/downloads:/downloads
       - /mnt/Media/Movies:/movies
-    ports:
-      - 7878:7878
     labels:
       tsdproxy.enable: "true"
       tsdproxy.port.1: "443/https:7878/http"

@@ -23,8 +23,6 @@ services:
       - /mnt/Pictures/:/pictures
     env_file:
       - .env
-    ports:
-      - '2283:2283'
     labels:
       tsdproxy.enable: "true"
       tsdproxy.name: "immich"

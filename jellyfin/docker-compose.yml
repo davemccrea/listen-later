@@ -14,8 +14,6 @@ services:
       - /mnt/Media/Movies:/data/movies
     devices:
       - /dev/dri:/dev/dri
-    ports:
-      - 8096:8096
     labels:
       tsdproxy.enable: "true"
       tsdproxy.port.1: "443/https:8096/http"

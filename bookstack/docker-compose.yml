@@ -18,9 +18,7 @@ services:
       - ./config:/config
     labels:
       tsdproxy.enable: "true"
-      tsdproxy.port.1: "443/https:8001/http"
-    ports:
-      - 8001:80
+      tsdproxy.port.1: "443/https:80/http"
     networks:
       - default
       - shared

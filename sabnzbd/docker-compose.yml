@@ -10,8 +10,6 @@ services:
       - ./config:/config
       - /opt/stacks/shared/downloads:/downloads
       - /opt/stacks/shared/incomplete-downloads:/incomplete-downloads
-    ports:
-      - 8080:8080
     labels:
       tsdproxy.enable: "true"
       tsdproxy.port.1: "443/https:8080/http"

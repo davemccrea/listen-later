@@ -8,8 +8,6 @@ services:
       - TZ=Europe/Helsinki
     volumes:
       - ./config:/config
-    ports:
-      - 9696:9696
     labels:
       tsdproxy.enable: "true"
       tsdproxy.port.1: "443/https:9696/http"
