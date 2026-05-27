@@ -12,14 +12,13 @@ services:
       - /opt/stacks/shared/incomplete-downloads:/incomplete-downloads
     labels:
       tsdproxy.enable: "true"
+      tsdproxy.name: "sabnzbd"
       tsdproxy.port.1: "443/https:8080/http"
     networks:
-      - default
       - shared
     restart: always
 
 networks:
-  default:
   shared:
     name: homelab
     external: true

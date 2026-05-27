@@ -29,7 +29,7 @@
 
 - Documents:
     - BookStack:
-        href: https://bookstack.tailfab2f.ts.net
+        href: https://wiki.mccrea.link
         siteMonitor: http://bookstack:80/login
         statusStyle: "dot"
         icon: bookstack.svg

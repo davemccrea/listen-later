@@ -11,14 +11,13 @@ services:
       - ./data:/data
     labels:
       tsdproxy.enable: "true"
+      tsdproxy.name: "vaultwarden"
       tsdproxy.port.1: "443/https:80/http"
     networks:
-      - default
       - shared
     restart: unless-stopped
 
 networks:
-  default:
   shared:
     name: homelab
     external: true

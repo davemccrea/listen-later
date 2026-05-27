@@ -12,7 +12,6 @@ services:
       - "./config:/data"
       - "/mnt/Media/Music:/music:ro"
     networks:
-      - default
       - shared
     env_file: .env
     environment:
@@ -22,7 +21,6 @@ services:
       ND_ENABLEEXTERNALSERVICES: true
 
 networks:
-  default:
   shared:
     name: homelab
     external: true

@@ -16,14 +16,13 @@ services:
       - /dev/dri:/dev/dri
     labels:
       tsdproxy.enable: "true"
+      tsdproxy.name: "jellyfin"
       tsdproxy.port.1: "443/https:8096/http"
     networks:
-      - default
       - shared
     restart: unless-stopped
 
 networks:
-  default:
   shared:
     name: homelab
     external: true

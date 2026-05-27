@@ -15,12 +15,10 @@ services:
       tsdproxy.name: "homepage"
       tsdproxy.port.1: "443/https:3000/http"
     networks:
-      - default
       - shared
     restart: always
 
 networks:
-  default:
   shared:
     name: homelab
     external: true

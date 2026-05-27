@@ -20,4 +20,4 @@ http:
 
 log:
   level: info
-proxyAccessLog: true
+proxyAccessLog: false
