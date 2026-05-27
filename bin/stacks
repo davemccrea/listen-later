@@ -43,6 +43,7 @@ find_stacks() {
            -o -name "compose.yml" -o -name "compose.yaml" \) \
         -not -path "*/node_modules/*" \
         -not -path "*/.git/*" \
+        2>/dev/null \
         | xargs -I{} dirname {} \
         | sort -u
 }
