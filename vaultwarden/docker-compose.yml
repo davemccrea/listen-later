@@ -10,10 +10,10 @@ services:
     volumes:
       - ./data:/data
     ports:
-      - 8305:80
+      - 80:80
     labels:
       tsdproxy.enable: "true"
-      tsdproxy.port.1: "443/https:8305/http"
+      tsdproxy.port.1: "443/https:80/http"
     networks:
       - default
       - shared
@@ -22,5 +22,5 @@ services:
 networks:
   default:
   shared:
-    name: tsidp_bridge
+    name: homelab
     external: true

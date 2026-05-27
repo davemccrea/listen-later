@@ -3,19 +3,28 @@ services:
     container_name: navidrome
     image: deluan/navidrome:latest
     user: 0:0
-    ports:
-      - "8301:4533"
     restart: unless-stopped
     labels:
       tsdproxy.enable: "true"
       tsdproxy.name: "navidrome"
-      tsdproxy.port.1: "443/https:8301/http"
+      tsdproxy.port.1: "443/https:4533/http"
+    ports:
+      - 4533:4533
     volumes:
       - "./config:/data"
       - "/mnt/Media/Music:/music:ro"
+    networks:
+      - default
+      - shared
     env_file: .env
     environment:
       ND_COVERARTPRIORITY: folder.*
       ND_SPOTIFY_ID: ${ND_SPOTIFY_ID}
       ND_SPOTIFY_SECRET: ${ND_SPOTIFY_SECRET}
       ND_ENABLEEXTERNALSERVICES: true
+
+networks:
+  default:
+  shared:
+    name: homelab
+    external: true

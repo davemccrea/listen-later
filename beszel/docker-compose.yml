@@ -5,11 +5,11 @@ services:
     volumes:
       - ./data:/beszel_data
     ports:
-      - 8500:8090
+      - 8090:8090
     labels:
       tsdproxy.enable: "true"
       tsdproxy.name: "beszel"
-      tsdproxy.port.1: "443/https:8500/http"
+      tsdproxy.port.1: "443/https:8090/http"
     networks:
       - default
       - shared
@@ -29,10 +29,10 @@ services:
       LISTEN: 45876
       KEY: 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILryqU32NmaM3C9bLUnibocGiR2YwYdtxtXLePcfcWVs'
       TOKEN: aece19f1-f595-49f1-be7e-3b17a024e819
-      HUB_URL: http://localhost:8500
+      HUB_URL: http://localhost:8090
 
 networks:
   default:
   shared:
-    name: tsidp_bridge
+    name: homelab
     external: true

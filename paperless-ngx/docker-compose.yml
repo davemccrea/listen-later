@@ -52,11 +52,11 @@ services:
       - gotenberg
       - tika
     ports:
-      - "8302:8000"
+      - "8000:8000"
     labels:
       tsdproxy.enable: "true"
       tsdproxy.name: "paperless"
-      tsdproxy.port.1: "443/https:8302/http"
+      tsdproxy.port.1: "443/https:8000/http"
     volumes:
       - ./data:/usr/src/paperless/data
       - ./media:/usr/src/paperless/media
@@ -87,5 +87,5 @@ services:
 networks:
   default:
   shared:
-    name: tsidp_bridge
+    name: homelab
     external: true

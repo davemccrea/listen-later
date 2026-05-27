@@ -12,16 +12,13 @@ services:
       - ./config:/config
       - /mnt/Media/TV:/data/tvshows
       - /mnt/Media/Movies:/data/movies
-    ports:
-      - 8100:8096
-      - 8920:8920 #optional
-      - 7359:7359/udp #optional
-      - 1900:1900/udp #optional
     devices:
       - /dev/dri:/dev/dri
+    ports:
+      - 8096:8096
     labels:
       tsdproxy.enable: "true"
-      tsdproxy.port.1: "443/https:8100/http"
+      tsdproxy.port.1: "443/https:8096/http"
     networks:
       - default
       - shared
@@ -30,5 +27,5 @@ services:
 networks:
   default:
   shared:
-    name: tsidp_bridge
+    name: homelab
     external: true

@@ -4,13 +4,17 @@ services:
     container_name: tsdproxy
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - tsdproxy-data:/data
+      - ./data:/data
       - ./config:/config
-    ports:
-      - "8002:8080"
     extra_hosts:
       - "host.docker.internal:host-gateway"
+    networks:
+      - default
+      - shared
     restart: unless-stopped
 
-volumes:
-  tsdproxy-data:
+networks:
+  default:
+  shared:
+    name: homelab
+    external: true

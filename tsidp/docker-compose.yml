@@ -37,5 +37,5 @@ volumes:
 networks:
   default:
   shared:
-    name: tsidp_bridge
+    name: homelab
     external: true

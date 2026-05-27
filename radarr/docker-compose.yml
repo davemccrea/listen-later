@@ -11,8 +11,17 @@ services:
       - /opt/stacks/shared/downloads:/downloads
       - /mnt/Media/Movies:/movies
     ports:
-      - 8202:7878
+      - 7878:7878
     labels:
       tsdproxy.enable: "true"
-      tsdproxy.port.1: "443/https:8202/http"
+      tsdproxy.port.1: "443/https:7878/http"
+    networks:
+      - default
+      - shared
     restart: always
+
+networks:
+  default:
+  shared:
+    name: homelab
+    external: true

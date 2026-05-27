@@ -16,11 +16,14 @@ services:
       - DB_PASSWORD=${DB_PASSWORD}
     volumes:
       - ./config:/config
-    ports:
-      - 8001:80
     labels:
       tsdproxy.enable: "true"
       tsdproxy.port.1: "443/https:8001/http"
+    ports:
+      - 8001:80
+    networks:
+      - default
+      - shared
     restart: always
 
   mariadb:
@@ -39,6 +42,7 @@ services:
       - ./mariadb:/config
     # ports:
     #   - 3306:3306
+
     restart: always
 
   tunnel:
@@ -50,3 +54,8 @@ services:
     environment:
       - TUNNEL_TOKEN=${TUNNEL_TOKEN}
 
+networks:
+  default:
+  shared:
+    name: homelab
+    external: true

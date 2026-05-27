@@ -1,8 +1,19 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-STACKS_ROOT="${STACKS_ROOT:-${2:-$PWD}}"
 COMMAND="${1:-}"
+shift || true
+
+DOWN_FLAGS=()
+_ROOT=""
+for arg in "$@"; do
+    case "$arg" in
+        -v) DOWN_FLAGS+=("-v") ;;
+        -*) echo "Unknown flag: $arg"; usage ;;
+        *)  _ROOT="$arg" ;;
+    esac
+done
+STACKS_ROOT="${STACKS_ROOT:-${_ROOT:-$PWD}}"
 
 trap 'echo; echo "Interrupted."; exit 130' INT TERM
 
@@ -12,7 +23,7 @@ Usage: $(basename "$0") <command> [stacks-root]
 
 Commands:
   up      Start all stacks (docker compose up -d)
-  down    Stop all stacks (docker compose down)
+  down    Stop all stacks (docker compose down) [-v to remove volumes]
   update  Pull latest images and recreate containers
   ports   List all host port mappings across stacks
 
@@ -75,7 +86,7 @@ case "$COMMAND" in
         run_on_stacks "up" up -d
         ;;
     down)
-        run_on_stacks "down" down
+        run_on_stacks "down" down "${DOWN_FLAGS[@]}"
         ;;
     update)
         run_on_stacks "update" pull

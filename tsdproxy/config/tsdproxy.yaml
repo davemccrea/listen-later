@@ -11,6 +11,7 @@ docker:
   local:
     host: unix:///var/run/docker.sock
     targetHostname: host.docker.internal
+    tryDockerInternalNetwork: true
     defaultProxyProvider: default
 
 http:
