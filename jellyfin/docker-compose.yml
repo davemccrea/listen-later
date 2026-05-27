@@ -7,7 +7,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Helsinki
-      #- JELLYFIN_PublishedServerUrl=http://192.168.0.5
+      - JELLYFIN_PublishedServerUrl=https://jellyfin.tailfab2f.ts.net
     volumes:
       - ./config:/config
       - /mnt/Media/TV:/data/tvshows
@@ -22,4 +22,13 @@ services:
     labels:
       tsdproxy.enable: "true"
       tsdproxy.port.1: "443/https:8100/http"
+    networks:
+      - default
+      - shared
     restart: unless-stopped
+
+networks:
+  default:
+  shared:
+    name: tsidp_bridge
+    external: true

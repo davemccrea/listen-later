@@ -1,5 +1,8 @@
 ---
-- Homelab:
+- Infrastructure:
+    - Tailscale IDP:
+        href: https://tsidp.tailfab2f.ts.net
+        icon: tailscale.svg
     - Proxmox VE:
         href: http://192.168.1.100:8006
         icon: proxmox.svg
@@ -18,6 +21,13 @@
         siteMonitor: http://192.168.1.105
         statusStyle: "dot"
         icon: adguard-home.svg
+    - Beszel:
+        href: https://beszel.tailfab2f.ts.net
+        siteMonitor: http://192.168.1.102:8500
+        statusStyle: "dot"
+        icon: beszel.svg
+
+- Documents:
     - BookStack:
         href: https://bookstack.tailfab2f.ts.net
         siteMonitor: http://192.168.1.102:8001/login
@@ -41,12 +51,22 @@
         statusStyle: "dot"
         icon: home-assistant.svg
 
-- Media Management:
-    - Seerr:
-        href: https://seerr.tailfab2f.ts.net
-        siteMonitor: http://192.168.1.102:8200
+- Media:
+    - Jellyfin:
+        href: https://jellyfin.tailfab2f.ts.net
+        siteMonitor: http://192.168.1.102:8100
         statusStyle: "dot"
-        icon: overseerr.svg
+        icon: jellyfin.svg
+    - Navidrome:
+        href: https://navidrome.tailfab2f.ts.net
+        siteMonitor: http://192.168.1.102:8301
+        statusStyle: "dot"
+        icon: navidrome.svg
+    - Immich:
+        href: https://immich.tailfab2f.ts.net
+        siteMonitor: http://192.168.1.102:8300
+        statusStyle: "dot"
+        icon: immich.svg
     - SABnzbd:
         href: https://sabnzbd.tailfab2f.ts.net
         siteMonitor: http://192.168.1.102:8204
@@ -67,20 +87,3 @@
         siteMonitor: http://192.168.1.102:8203
         statusStyle: "dot"
         icon: prowlarr.svg
-
-- Media Viewers:
-    - Jellyfin:
-        href: https://jellyfin.tailfab2f.ts.net
-        siteMonitor: http://192.168.1.102:8100
-        statusStyle: "dot"
-        icon: jellyfin.svg
-    - Navidrome:
-        href: https://navidrome.tailfab2f.ts.net
-        siteMonitor: http://192.168.1.102:8301
-        statusStyle: "dot"
-        icon: navidrome.svg
-    - Immich:
-        href: https://immich.tailfab2f.ts.net
-        siteMonitor: http://192.168.1.102:8300
-        statusStyle: "dot"
-        icon: immich.svg

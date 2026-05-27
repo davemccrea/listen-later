@@ -26,11 +26,13 @@
 # documentation.
 services:
   broker:
+    container_name: paperless-broker
     image: docker.io/library/redis:8
     restart: unless-stopped
     volumes:
       - ./redisdata:/data
   db:
+    container_name: paperless-db
     image: docker.io/library/postgres:18
     restart: unless-stopped
     volumes:
@@ -41,6 +43,7 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
   webserver:
+    container_name: paperless
     image: ghcr.io/paperless-ngx/paperless-ngx:latest
     restart: unless-stopped
     depends_on:
@@ -59,11 +62,15 @@ services:
       - ./media:/usr/src/paperless/media
       - ./export:/usr/src/paperless/export
       - ./consume:/usr/src/paperless/consume
+    networks:
+      - default
+      - shared
     env_file: docker-compose.env
     environment:
       PAPERLESS_REDIS: redis://broker:6379
       PAPERLESS_DBHOST: db
   gotenberg:
+    container_name: paperless-gotenberg
     image: docker.io/gotenberg/gotenberg:8.25
     restart: unless-stopped
     # The gotenberg chromium route is used to convert .eml files. We do not
@@ -73,5 +80,12 @@ services:
       - "--chromium-disable-javascript=true"
       - "--chromium-allow-list=file:///tmp/.*"
   tika:
+    container_name: paperless-tika
     image: docker.io/apache/tika:latest
     restart: unless-stopped
+
+networks:
+  default:
+  shared:
+    name: tsidp_bridge
+    external: true

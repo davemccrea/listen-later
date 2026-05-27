@@ -1,0 +1,26 @@
+---
+services:
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    environment:
+      - DOMAIN=https://vaultwarden.tailfab2f.ts.net
+      - SIGNUPS_ALLOWED=false
+      - ADMIN_TOKEN=${ADMIN_TOKEN}
+    volumes:
+      - ./data:/data
+    ports:
+      - 8305:80
+    labels:
+      tsdproxy.enable: "true"
+      tsdproxy.port.1: "443/https:8305/http"
+    networks:
+      - default
+      - shared
+    restart: unless-stopped
+
+networks:
+  default:
+  shared:
+    name: tsidp_bridge
+    external: true

@@ -10,6 +10,7 @@ services:
       - TS_STATE_DIR=/data
       - TSIDP_ENABLE_STS=1
       - TSIDP_LOCAL_PORT=8080
+      - TSIDP_DEBUG_ALL_REQUESTS=1
     volumes:
       - tsidp-data:/data
     networks:
