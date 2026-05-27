@@ -1,16 +1,32 @@
 services:
+  tailscale-beszel:
+    image: ghcr.io/tailscale/tailscale:latest
+    container_name: tailscale-beszel
+    hostname: beszel
+    env_file: .env
+    environment:
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_SERVE_CONFIG=/config/serve.json
+      - TS_EXTRA_ARGS=--accept-dns=false
+    volumes:
+      - ./tailscale/state:/var/lib/tailscale
+      - ./tailscale/config:/config
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    ports:
+      - "127.0.0.1:8090:8090"
+    restart: unless-stopped
+
   beszel:
     image: henrygd/beszel:latest
     container_name: beszel
     volumes:
       - ./data:/beszel_data
-    labels:
-      tsdproxy.enable: "true"
-      tsdproxy.name: "beszel"
-      tsdproxy.port.1: "443/https:8090/http"
-    networks:
-      - default
-      - shared
+    network_mode: service:tailscale-beszel
+    depends_on:
+      - tailscale-beszel
     restart: unless-stopped
 
   beszel-agent:
@@ -28,9 +44,3 @@ services:
       KEY: 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILryqU32NmaM3C9bLUnibocGiR2YwYdtxtXLePcfcWVs'
       TOKEN: aece19f1-f595-49f1-be7e-3b17a024e819
       HUB_URL: http://localhost:8090
-
-networks:
-  default:
-  shared:
-    name: homelab
-    external: true

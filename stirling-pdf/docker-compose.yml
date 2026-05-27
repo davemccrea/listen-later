@@ -1,26 +1,34 @@
 services:
+  tailscale-stirling-pdf:
+    image: ghcr.io/tailscale/tailscale:latest
+    container_name: tailscale-stirling-pdf
+    hostname: stirling-pdf
+    env_file: .env
+    environment:
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_SERVE_CONFIG=/config/serve.json
+      - TS_EXTRA_ARGS=--accept-dns=false
+    volumes:
+      - ./tailscale/state:/var/lib/tailscale
+      - ./tailscale/config:/config
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    restart: unless-stopped
+
   stirling-pdf:
     image: stirlingtools/stirling-pdf:latest
     container_name: stirling-pdf
     volumes:
-      - ./stirling-data/tessdata:/usr/share/tessdata  # OCR language files
-      - ./stirling-data/configs:/configs               # Settings & database
-      - ./stirling-data/logs:/logs                     # Application logs
-      - ./stirling-data/pipeline:/pipeline             # Automation configs
+      - ./stirling-data/tessdata:/usr/share/tessdata
+      - ./stirling-data/configs:/configs
+      - ./stirling-data/logs:/logs
+      - ./stirling-data/pipeline:/pipeline
     environment:
-      - SECURITY_ENABLELOGIN=false    # Set true to enable user authentication
-      - LANGS=en_GB                   # Interface language
-    labels:
-      tsdproxy.enable: "true"
-      tsdproxy.name: "stirling-pdf"
-      tsdproxy.port.1: "443/https:8080/http"
-    networks:
-      - default
-      - shared
+      - SECURITY_ENABLELOGIN=false
+      - LANGS=en_GB
+    network_mode: service:tailscale-stirling-pdf
+    depends_on:
+      - tailscale-stirling-pdf
     restart: unless-stopped
-
-networks:
-  default:
-  shared:
-    name: homelab
-    external: true

@@ -1,4 +1,22 @@
-services: 
+services:
+  tailscale-sonarr:
+    image: ghcr.io/tailscale/tailscale:latest
+    container_name: tailscale-sonarr
+    hostname: sonarr
+    env_file: .env
+    environment:
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_SERVE_CONFIG=/config/serve.json
+      - TS_EXTRA_ARGS=--accept-dns=false
+    volumes:
+      - ./tailscale/state:/var/lib/tailscale
+      - ./tailscale/config:/config
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    restart: unless-stopped
+
   sonarr:
     image: lscr.io/linuxserver/sonarr:latest
     container_name: sonarr
@@ -10,15 +28,7 @@ services:
       - ./config:/config
       - /opt/stacks/shared/downloads:/downloads
       - /mnt/Media/TV:/tv
-    labels:
-      tsdproxy.enable: "true"
-      tsdproxy.name: "sonarr"
-      tsdproxy.port.1: "443/https:8989/http"
-    networks:
-      - shared
+    network_mode: service:tailscale-sonarr
+    depends_on:
+      - tailscale-sonarr
     restart: always
-
-networks:
-  shared:
-    name: homelab
-    external: true

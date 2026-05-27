@@ -1,5 +1,23 @@
 ---
 services:
+  tailscale-jellyfin:
+    image: ghcr.io/tailscale/tailscale:latest
+    container_name: tailscale-jellyfin
+    hostname: jellyfin
+    env_file: .env
+    environment:
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_SERVE_CONFIG=/config/serve.json
+      - TS_EXTRA_ARGS=--accept-dns=false
+    volumes:
+      - ./tailscale/state:/var/lib/tailscale
+      - ./tailscale/config:/config
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    restart: unless-stopped
+
   jellyfin:
     image: lscr.io/linuxserver/jellyfin:latest
     container_name: jellyfin
@@ -14,15 +32,7 @@ services:
       - /mnt/Media/Movies:/data/movies
     devices:
       - /dev/dri:/dev/dri
-    labels:
-      tsdproxy.enable: "true"
-      tsdproxy.name: "jellyfin"
-      tsdproxy.port.1: "443/https:8096/http"
-    networks:
-      - shared
+    network_mode: service:tailscale-jellyfin
+    depends_on:
+      - tailscale-jellyfin
     restart: unless-stopped
-
-networks:
-  shared:
-    name: homelab
-    external: true

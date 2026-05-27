@@ -25,6 +25,26 @@
 # For more extensive installation and update instructions, refer to the
 # documentation.
 services:
+  tailscale-paperless:
+    image: ghcr.io/tailscale/tailscale:latest
+    container_name: tailscale-paperless
+    hostname: paperless
+    env_file: .env
+    environment:
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_SERVE_CONFIG=/config/serve.json
+      - TS_EXTRA_ARGS=--accept-dns=false
+    volumes:
+      - ./tailscale/state:/var/lib/tailscale
+      - ./tailscale/config:/config
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    networks:
+      - default
+    restart: unless-stopped
+
   broker:
     container_name: paperless-broker
     image: docker.io/library/redis:8
@@ -51,18 +71,13 @@ services:
       - broker
       - gotenberg
       - tika
-    labels:
-      tsdproxy.enable: "true"
-      tsdproxy.name: "paperless"
-      tsdproxy.port.1: "443/https:8000/http"
+      - tailscale-paperless
     volumes:
       - ./data:/usr/src/paperless/data
       - ./media:/usr/src/paperless/media
       - ./export:/usr/src/paperless/export
       - ./consume:/usr/src/paperless/consume
-    networks:
-      - default
-      - shared
+    network_mode: service:tailscale-paperless
     env_file: docker-compose.env
     environment:
       PAPERLESS_REDIS: redis://broker:6379
@@ -84,6 +99,3 @@ services:
 
 networks:
   default:
-  shared:
-    name: homelab
-    external: true

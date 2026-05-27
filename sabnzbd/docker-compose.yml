@@ -1,4 +1,22 @@
-services:  
+services:
+  tailscale-sabnzbd:
+    image: ghcr.io/tailscale/tailscale:latest
+    container_name: tailscale-sabnzbd
+    hostname: sabnzbd
+    env_file: .env
+    environment:
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_SERVE_CONFIG=/config/serve.json
+      - TS_EXTRA_ARGS=--accept-dns=false
+    volumes:
+      - ./tailscale/state:/var/lib/tailscale
+      - ./tailscale/config:/config
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    restart: unless-stopped
+
   sabnzbd:
     image: lscr.io/linuxserver/sabnzbd:latest
     container_name: sabnzbd
@@ -10,15 +28,7 @@ services:
       - ./config:/config
       - /opt/stacks/shared/downloads:/downloads
       - /opt/stacks/shared/incomplete-downloads:/incomplete-downloads
-    labels:
-      tsdproxy.enable: "true"
-      tsdproxy.name: "sabnzbd"
-      tsdproxy.port.1: "443/https:8080/http"
-    networks:
-      - shared
+    network_mode: service:tailscale-sabnzbd
+    depends_on:
+      - tailscale-sabnzbd
     restart: always
-
-networks:
-  shared:
-    name: homelab
-    external: true
