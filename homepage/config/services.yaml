@@ -13,7 +13,7 @@
         icon: openmediavault.svg
     - AdGuard Home:
         href: http://100.64.31.2
-        siteMonitor: http://192.168.1.105
+        siteMonitor: http://100.64.31.2
         statusStyle: "dot"
         icon: adguard-home.svg
     - Beszel:
@@ -21,11 +21,6 @@
         siteMonitor: http://100.98.242.21:8090
         statusStyle: "dot"
         icon: beszel.svg
-    - Vaultwarden:
-        href: http://100.103.201.91
-        siteMonitor: http://100.103.201.91
-        statusStyle: "dot"
-        icon: vaultwarden.svg
 
 - Documents:
     - BookStack:
