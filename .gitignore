@@ -23,6 +23,15 @@ seerr/config/settings.old.json
 # Homepage logs (config yaml files are worth keeping)
 homepage/config/logs/
 
+# Tailscale sidecar state (node keys and credentials)
+**/tailscale/state/
+
+# Service data directories
+vaultwarden/data/
+beszel/data/
+beszel/beszel_agent_data/
+tsidp/data/
+
 # Bulk data and generated files — too large and noisy for git
 immich/library/
 immich/postgres/
