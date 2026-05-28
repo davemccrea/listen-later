@@ -3,11 +3,11 @@ services:
     image: ghcr.io/tailscale/tailscale:latest
     container_name: tailscale-homepage
     hostname: homepage
-    env_file: .env
+    env_file: ../.env
     environment:
       - TS_STATE_DIR=/var/lib/tailscale
       - TS_SERVE_CONFIG=/config/serve.json
-      - TS_EXTRA_ARGS=--accept-dns=false
+      - TS_EXTRA_ARGS=--accept-dns=true
     volumes:
       - ./tailscale/state:/var/lib/tailscale
       - ./tailscale/config:/config
@@ -20,7 +20,6 @@ services:
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
     container_name: homepage
-    env_file: .env
     environment:
       HOMEPAGE_ALLOWED_HOSTS: homepage.tailfab2f.ts.net
       PUID: 1000

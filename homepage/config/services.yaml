@@ -18,29 +18,29 @@
         icon: adguard-home.svg
     - Beszel:
         href: https://beszel.tailfab2f.ts.net
-        siteMonitor: http://beszel:8090
+        siteMonitor: https://beszel.tailfab2f.ts.net
         statusStyle: "dot"
         icon: beszel.svg
     - Vaultwarden:
         href: https://vaultwarden.tailfab2f.ts.net
-        siteMonitor: http://vaultwarden:80
+        siteMonitor: https://vaultwarden.tailfab2f.ts.net
         statusStyle: "dot"
         icon: vaultwarden.svg
 
 - Documents:
     - BookStack:
         href: https://wiki.mccrea.link
-        siteMonitor: http://bookstack:80/login
+        siteMonitor: https://wiki.mccrea.link
         statusStyle: "dot"
         icon: bookstack.svg
     - Paperless-ngx:
         href: https://paperless.tailfab2f.ts.net
-        siteMonitor: http://paperless:8000
+        siteMonitor: https://paperless.tailfab2f.ts.net
         statusStyle: "dot"
         icon: paperless-ngx.svg
     - Stirling PDF:
         href: https://stirling-pdf.tailfab2f.ts.net
-        siteMonitor: http://stirling-pdf:8080
+        siteMonitor: https://stirling-pdf.tailfab2f.ts.net
         statusStyle: "dot"
         icon: stirling-pdf.svg
 
@@ -54,36 +54,36 @@
 - Media:
     - Jellyfin:
         href: https://jellyfin.tailfab2f.ts.net
-        siteMonitor: http://jellyfin:8096
+        siteMonitor: https://jellyfin.tailfab2f.ts.net
         statusStyle: "dot"
         icon: jellyfin.svg
     - Navidrome:
         href: https://navidrome.tailfab2f.ts.net
-        siteMonitor: http://navidrome:4533
+        siteMonitor: https://navidrome.tailfab2f.ts.net
         statusStyle: "dot"
         icon: navidrome.svg
     - Immich:
         href: https://immich.tailfab2f.ts.net
-        siteMonitor: http://immich_server:2283
+        siteMonitor: https://immich.tailfab2f.ts.net
         statusStyle: "dot"
         icon: immich.svg
     - SABnzbd:
         href: https://sabnzbd.tailfab2f.ts.net
-        siteMonitor: http://sabnzbd:8080
+        siteMonitor: https://sabnzbd.tailfab2f.ts.net
         statusStyle: "dot"
         icon: sabnzbd.svg
     - Radarr:
         href: https://radarr.tailfab2f.ts.net
-        siteMonitor: http://radarr:7878
+        siteMonitor: https://radarr.tailfab2f.ts.net
         statusStyle: "dot"
         icon: radarr.svg
     - Sonarr:
         href: https://sonarr.tailfab2f.ts.net
-        siteMonitor: http://sonarr:8989
+        siteMonitor: https://sonarr.tailfab2f.ts.net
         statusStyle: "dot"
         icon: sonarr.svg
     - Prowlarr:
         href: https://prowlarr.tailfab2f.ts.net
-        siteMonitor: http://prowlarr:9696
+        siteMonitor: https://prowlarr.tailfab2f.ts.net
         statusStyle: "dot"
         icon: prowlarr.svg
