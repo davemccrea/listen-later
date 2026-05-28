@@ -7,11 +7,8 @@ services:
     env_file: ../.env
     environment:
       - TS_STATE_DIR=/var/lib/tailscale
-      - TS_SERVE_CONFIG=/config/serve.json
-      - TS_EXTRA_ARGS=--accept-dns=false
     volumes:
       - ./tailscale/state:/var/lib/tailscale
-      - ./tailscale/config:/config
     cap_add:
       - NET_ADMIN
     devices:
@@ -25,7 +22,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Helsinki
-      - JELLYFIN_PublishedServerUrl=https://jellyfin.tailfab2f.ts.net
+      - JELLYFIN_PublishedServerUrl=http://100.86.11.60:8096
     volumes:
       - ./config:/config
       - /mnt/Media/TV:/data/tvshows

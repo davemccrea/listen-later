@@ -1,10 +1,10 @@
 ---
 - Infrastructure:
     - Tailscale IDP:
-        href: https://tsidp.tailfab2f.ts.net
+        href: https://100.88.0.39
         icon: tailscale.svg
     - Proxmox VE:
-        href: https://pve.tailfab2f.ts.net:8006
+        href: https://100.92.229.102:8006
         icon: proxmox.svg
     - OpenMediaVault:
         href: http://192.168.1.104
@@ -12,18 +12,18 @@
         statusStyle: "dot"
         icon: openmediavault.svg
     - AdGuard Home:
-        href: https://adguard.tailfab2f.ts.net
+        href: http://100.64.31.2
         siteMonitor: http://192.168.1.105
         statusStyle: "dot"
         icon: adguard-home.svg
     - Beszel:
-        href: https://beszel.tailfab2f.ts.net
-        siteMonitor: https://beszel.tailfab2f.ts.net
+        href: http://100.98.242.21:8090
+        siteMonitor: http://100.98.242.21:8090
         statusStyle: "dot"
         icon: beszel.svg
     - Vaultwarden:
-        href: https://vaultwarden.tailfab2f.ts.net
-        siteMonitor: https://vaultwarden.tailfab2f.ts.net
+        href: http://100.103.201.91
+        siteMonitor: http://100.103.201.91
         statusStyle: "dot"
         icon: vaultwarden.svg
 
@@ -34,13 +34,13 @@
         statusStyle: "dot"
         icon: bookstack.svg
     - Paperless-ngx:
-        href: https://paperless.tailfab2f.ts.net
-        siteMonitor: https://paperless.tailfab2f.ts.net
+        href: http://100.95.0.84:8000
+        siteMonitor: http://100.95.0.84:8000
         statusStyle: "dot"
         icon: paperless-ngx.svg
     - Stirling PDF:
-        href: https://stirling-pdf.tailfab2f.ts.net
-        siteMonitor: https://stirling-pdf.tailfab2f.ts.net
+        href: http://100.103.220.108:8080
+        siteMonitor: http://100.103.220.108:8080
         statusStyle: "dot"
         icon: stirling-pdf.svg
 
@@ -53,37 +53,37 @@
 
 - Media:
     - Jellyfin:
-        href: https://jellyfin.tailfab2f.ts.net
-        siteMonitor: https://jellyfin.tailfab2f.ts.net
+        href: http://100.86.11.60:8096
+        siteMonitor: http://100.86.11.60:8096
         statusStyle: "dot"
         icon: jellyfin.svg
     - Navidrome:
-        href: https://navidrome.tailfab2f.ts.net
-        siteMonitor: https://navidrome.tailfab2f.ts.net
+        href: http://100.119.32.95:4533
+        siteMonitor: http://100.119.32.95:4533
         statusStyle: "dot"
         icon: navidrome.svg
     - Immich:
-        href: https://immich.tailfab2f.ts.net
-        siteMonitor: https://immich.tailfab2f.ts.net
+        href: http://100.85.34.58:2283
+        siteMonitor: http://100.85.34.58:2283
         statusStyle: "dot"
         icon: immich.svg
     - SABnzbd:
-        href: https://sabnzbd.tailfab2f.ts.net
-        siteMonitor: https://sabnzbd.tailfab2f.ts.net
+        href: http://100.85.220.21:8080
+        siteMonitor: http://100.85.220.21:8080
         statusStyle: "dot"
         icon: sabnzbd.svg
     - Radarr:
-        href: https://radarr.tailfab2f.ts.net
-        siteMonitor: https://radarr.tailfab2f.ts.net
+        href: http://100.118.118.93:7878
+        siteMonitor: http://100.118.118.93:7878
         statusStyle: "dot"
         icon: radarr.svg
     - Sonarr:
-        href: https://sonarr.tailfab2f.ts.net
-        siteMonitor: https://sonarr.tailfab2f.ts.net
+        href: http://100.109.247.96:8989
+        siteMonitor: http://100.109.247.96:8989
         statusStyle: "dot"
         icon: sonarr.svg
     - Prowlarr:
-        href: https://prowlarr.tailfab2f.ts.net
-        siteMonitor: https://prowlarr.tailfab2f.ts.net
+        href: http://100.103.138.106:9696
+        siteMonitor: http://100.103.138.106:9696
         statusStyle: "dot"
         icon: prowlarr.svg

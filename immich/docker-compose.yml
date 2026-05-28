@@ -17,17 +17,12 @@ services:
     env_file: ../.env
     environment:
       - TS_STATE_DIR=/var/lib/tailscale
-      - TS_SERVE_CONFIG=/config/serve.json
-      - TS_EXTRA_ARGS=--accept-dns=false
     volumes:
       - ./tailscale/state:/var/lib/tailscale
-      - ./tailscale/config:/config
     cap_add:
       - NET_ADMIN
     devices:
       - /dev/net/tun:/dev/net/tun
-    networks:
-      - default
     restart: unless-stopped
 
   immich-server:
@@ -93,6 +88,3 @@ services:
 
 volumes:
   model-cache:
-
-networks:
-  default:
