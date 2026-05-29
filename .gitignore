@@ -26,6 +26,10 @@ homepage/config/logs/
 # Tailscale sidecar state (node keys and credentials)
 **/tailscale/state/
 
+# Caddy runtime: issued certs, OCSP staples, autosave config
+caddy/data/
+caddy/config/
+
 # Service data directories
 vaultwarden/data/
 beszel/data/

@@ -10,22 +10,6 @@
 name: immich
 
 services:
-  tailscale-immich:
-    image: ghcr.io/tailscale/tailscale:latest
-    container_name: tailscale-immich
-    hostname: immich
-    env_file: ../.env
-    environment:
-      - TS_STATE_DIR=/var/lib/tailscale
-      - TS_USERSPACE=false
-    volumes:
-      - ./tailscale/state:/var/lib/tailscale
-    cap_add:
-      - NET_ADMIN
-    devices:
-      - /dev/net/tun:/dev/net/tun
-    restart: unless-stopped
-
   immich-server:
     container_name: immich_server
     image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
@@ -42,8 +26,9 @@ services:
     depends_on:
       - redis
       - database
-      - tailscale-immich
-    network_mode: service:tailscale-immich
+    networks:
+      - default
+      - proxy
     restart: always
     healthcheck:
       disable: false
@@ -86,6 +71,12 @@ services:
       - ${DB_DATA_LOCATION}:/var/lib/postgresql/data
     shm_size: 128mb
     restart: always
+
+networks:
+  default:
+  proxy:
+    name: proxy
+    external: true
 
 volumes:
   model-cache:

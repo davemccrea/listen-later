@@ -25,22 +25,6 @@
 # For more extensive installation and update instructions, refer to the
 # documentation.
 services:
-  tailscale-paperless:
-    image: ghcr.io/tailscale/tailscale:latest
-    container_name: tailscale-paperless
-    hostname: paperless
-    env_file: ../.env
-    environment:
-      - TS_STATE_DIR=/var/lib/tailscale
-      - TS_USERSPACE=false
-    volumes:
-      - ./tailscale/state:/var/lib/tailscale
-    cap_add:
-      - NET_ADMIN
-    devices:
-      - /dev/net/tun:/dev/net/tun
-    restart: unless-stopped
-
   broker:
     container_name: paperless-broker
     image: docker.io/library/redis:8
@@ -67,13 +51,14 @@ services:
       - broker
       - gotenberg
       - tika
-      - tailscale-paperless
+    networks:
+      - default
+      - proxy
     volumes:
       - ./data:/usr/src/paperless/data
       - ./media:/usr/src/paperless/media
       - ./export:/usr/src/paperless/export
       - ./consume:/usr/src/paperless/consume
-    network_mode: service:tailscale-paperless
     env_file: docker-compose.env
     environment:
       PAPERLESS_REDIS: redis://broker:6379
@@ -92,3 +77,9 @@ services:
     container_name: paperless-tika
     image: docker.io/apache/tika:latest
     restart: unless-stopped
+
+networks:
+  default:
+  proxy:
+    name: proxy
+    external: true

@@ -1,21 +1,5 @@
 ---
 services:
-  tailscale-jellyfin:
-    image: ghcr.io/tailscale/tailscale:latest
-    container_name: tailscale-jellyfin
-    hostname: jellyfin
-    env_file: ../.env
-    environment:
-      - TS_STATE_DIR=/var/lib/tailscale
-      - TS_USERSPACE=false
-    volumes:
-      - ./tailscale/state:/var/lib/tailscale
-    cap_add:
-      - NET_ADMIN
-    devices:
-      - /dev/net/tun:/dev/net/tun
-    restart: unless-stopped
-
   jellyfin:
     image: lscr.io/linuxserver/jellyfin:latest
     container_name: jellyfin
@@ -23,14 +7,18 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Helsinki
-      - JELLYFIN_PublishedServerUrl=http://100.86.11.60:8096
+      - JELLYFIN_PublishedServerUrl=https://jellyfin.mccrea.link
     volumes:
       - ./config:/config
       - /mnt/Media/TV:/data/tvshows
       - /mnt/Media/Movies:/data/movies
     devices:
       - /dev/dri:/dev/dri
-    network_mode: service:tailscale-jellyfin
-    depends_on:
-      - tailscale-jellyfin
+    networks:
+      - proxy
     restart: unless-stopped
+
+networks:
+  proxy:
+    name: proxy
+    external: true
