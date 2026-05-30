@@ -4,6 +4,15 @@ Single Tailscale ingress node terminating a wildcard `*.mccrea.link` cert and
 reverse-proxying to every service by Docker container name over the external
 `proxy` bridge. Implements `caddy-url-access-plan.md`.
 
+The config lives in `conf/Caddyfile` and the **directory** is mounted at
+`/etc/caddy` (not the file). This matters: a single-file bind mount pins the
+inode, so edits would be silently ignored by the running container. To apply a
+Caddyfile change after editing `conf/Caddyfile`:
+
+```bash
+docker exec caddy caddy reload --config /etc/caddy/Caddyfile
+```
+
 ## One-time bootstrap
 
 1. **Create the shared bridge** (already done if `docker network ls` shows it):
@@ -16,7 +25,7 @@ reverse-proxying to every service by Docker container name over the external
    cp .env.example .env
    # fill CF_API_TOKEN (and ACME_EMAIL)
    ```
-3. **Build + start** (Caddy + sidecar only; oauth2-proxy stays dormant):
+3. **Build + start**:
    ```bash
    docker compose build
    docker compose up -d
@@ -48,28 +57,3 @@ Per `caddy-url-access-plan.md` §3, for each service (one at a time, verify, com
 4. `docker compose up -d` the service; the matching site block in `Caddyfile`
    already exists, so `https://<svc>.mccrea.link` lights up. (Unmigrated
    services keep their sidecar + IP access and just 502 through Caddy.)
-
-## Forward-auth (sonarr / radarr / prowlarr / sabnzbd) — NOT YET WORKING
-
-The guarded blocks and the `oauth2-proxy` service are scaffolded but disabled
-(`profiles: ["auth"]`, blocks commented in `Caddyfile`). Two things must be
-resolved first:
-
-1. **tsidp client.** Register `oauth2-proxy` as an OIDC client in tsidp; put the
-   client id/secret + a generated `OAUTH2_COOKIE_SECRET` into `.env`.
-
-2. **⚠ Back-channel DNS (open design issue).** oauth2-proxy makes *server-side*
-   calls to the issuer `https://tsidp.tailfab2f.ts.net` (OIDC discovery, JWKS,
-   token exchange) from inside a container. That is exactly the in-container
-   `ts.net` resolution path the plan documents as broken under the AdGuard
-   global-override DNS config. The plan's "only the browser needs tsidp" note
-   covers the front-channel but not this back-channel. Options to evaluate:
-   - `extra_hosts: ["tsidp.tailfab2f.ts.net:<tsidp tailnet IP>"]` on
-     oauth2-proxy, and confirm the proxy bridge can route to 100.x (host IP
-     forwarding / tailscale masquerade);
-   - give oauth2-proxy its own thin Tailscale sidecar (adds a 3rd tailnet node);
-   - front tsidp with a `*.mccrea.link` name too and point the issuer there
-     (changes the issuer URL — affects existing Immich registration).
-
-   Resolve this, then `docker compose --profile auth up -d` and uncomment the
-   `(guarded)` snippet + the four host blocks in `Caddyfile`.

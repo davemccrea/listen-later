@@ -1,20 +1,4 @@
 services:
-  tailscale-sabnzbd:
-    image: ghcr.io/tailscale/tailscale:latest
-    container_name: tailscale-sabnzbd
-    hostname: sabnzbd
-    env_file: ../.env
-    environment:
-      - TS_STATE_DIR=/var/lib/tailscale
-      - TS_USERSPACE=false
-    volumes:
-      - ./tailscale/state:/var/lib/tailscale
-    cap_add:
-      - NET_ADMIN
-    devices:
-      - /dev/net/tun:/dev/net/tun
-    restart: unless-stopped
-
   sabnzbd:
     image: lscr.io/linuxserver/sabnzbd:latest
     container_name: sabnzbd
@@ -26,7 +10,11 @@ services:
       - ./config:/config
       - /opt/stacks/shared/downloads:/downloads
       - /opt/stacks/shared/incomplete-downloads:/incomplete-downloads
-    network_mode: service:tailscale-sabnzbd
-    depends_on:
-      - tailscale-sabnzbd
+    networks:
+      - proxy
     restart: always
+
+networks:
+  proxy:
+    name: proxy
+    external: true

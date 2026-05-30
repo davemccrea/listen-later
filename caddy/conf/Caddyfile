@@ -58,39 +58,35 @@
 		reverse_proxy beszel:8090
 	}
 
+	# Servarr + downloader. No edge auth (tailnet trust).
+	@sonarr host sonarr.mccrea.link
+	handle @sonarr {
+		reverse_proxy sonarr:8989
+	}
+
+	@radarr host radarr.mccrea.link
+	handle @radarr {
+		reverse_proxy radarr:7878
+	}
+
+	@prowlarr host prowlarr.mccrea.link
+	handle @prowlarr {
+		reverse_proxy prowlarr:9696
+	}
+
+	# sabnzbd keeps url_base=/sabnzbd; send the bare root there for convenience.
+	@sabnzbd host sabnzbd.mccrea.link
+	handle @sabnzbd {
+		redir / /sabnzbd/
+		reverse_proxy sabnzbd:8080
+	}
+
 	# bookstack is currently served PUBLICLY at wiki.mccrea.link via the
 	# cloudflared tunnel and has no Tailscale sidecar. Decide public-vs-tailnet
 	# before adding it here; left out intentionally.
-
-	# ---------------------------------------------------------------------------
-	# Guarded (forward-auth via oauth2-proxy -> tsidp). PENDING: do not enable
-	# until (a) the oauth2-proxy tsidp client is registered and its env filled,
-	# and (b) the oauth2-proxy -> tsidp.tailfab2f.ts.net back-channel works from
-	# inside a container (see README "Forward-auth back-channel"). With those
-	# done, uncomment the snippet and the four blocks.
-	# ---------------------------------------------------------------------------
-	# import guarded sonarr:8989   etc.
 
 	# Anything not matched above on *.mccrea.link
 	handle {
 		respond "no such service" 404
 	}
 }
-
-# (guarded) snippet — enable with the four blocks above once oauth2-proxy works.
-# (guarded) {
-# 	handle /oauth2/* {
-# 		reverse_proxy oauth2-proxy:4180
-# 	}
-# 	handle {
-# 		forward_auth oauth2-proxy:4180 {
-# 			uri /oauth2/auth
-# 			copy_headers X-Auth-Request-User X-Auth-Request-Email
-# 			@unauth status 401
-# 			handle_response @unauth {
-# 				redir * /oauth2/sign_in?rd={scheme}://{host}{uri}
-# 			}
-# 		}
-# 		reverse_proxy {args[0]}
-# 	}
-# }

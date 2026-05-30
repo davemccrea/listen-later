@@ -1,20 +1,4 @@
 services:
-  tailscale-radarr:
-    image: ghcr.io/tailscale/tailscale:latest
-    container_name: tailscale-radarr
-    hostname: radarr
-    env_file: ../.env
-    environment:
-      - TS_STATE_DIR=/var/lib/tailscale
-      - TS_USERSPACE=false
-    volumes:
-      - ./tailscale/state:/var/lib/tailscale
-    cap_add:
-      - NET_ADMIN
-    devices:
-      - /dev/net/tun:/dev/net/tun
-    restart: unless-stopped
-
   radarr:
     image: lscr.io/linuxserver/radarr:latest
     container_name: radarr
@@ -26,7 +10,11 @@ services:
       - ./config:/config
       - /opt/stacks/shared/downloads:/downloads
       - /mnt/Media/Movies:/movies
-    network_mode: service:tailscale-radarr
-    depends_on:
-      - tailscale-radarr
+    networks:
+      - proxy
     restart: always
+
+networks:
+  proxy:
+    name: proxy
+    external: true

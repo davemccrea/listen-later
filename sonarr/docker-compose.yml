@@ -1,20 +1,4 @@
 services:
-  tailscale-sonarr:
-    image: ghcr.io/tailscale/tailscale:latest
-    container_name: tailscale-sonarr
-    hostname: sonarr
-    env_file: ../.env
-    environment:
-      - TS_STATE_DIR=/var/lib/tailscale
-      - TS_USERSPACE=false
-    volumes:
-      - ./tailscale/state:/var/lib/tailscale
-    cap_add:
-      - NET_ADMIN
-    devices:
-      - /dev/net/tun:/dev/net/tun
-    restart: unless-stopped
-
   sonarr:
     image: lscr.io/linuxserver/sonarr:latest
     container_name: sonarr
@@ -26,7 +10,11 @@ services:
       - ./config:/config
       - /opt/stacks/shared/downloads:/downloads
       - /mnt/Media/TV:/tv
-    network_mode: service:tailscale-sonarr
-    depends_on:
-      - tailscale-sonarr
+    networks:
+      - proxy
     restart: always
+
+networks:
+  proxy:
+    name: proxy
+    external: true
