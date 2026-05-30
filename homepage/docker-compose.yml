@@ -6,6 +6,7 @@ services:
       HOMEPAGE_ALLOWED_HOSTS: homepage.mccrea.link
       PUID: 1000
       PGID: 1000
+    env_file: .env
     volumes:
       - ./config:/app/config
       - /var/run/docker.sock:/var/run/docker.sock:ro

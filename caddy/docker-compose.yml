@@ -1,16 +1,8 @@
 name: caddy
 
 services:
-  # Single ingress tailnet node. Caddy shares this netns, so it gets the
-  # tailnet IP (what AdGuard points *.mccrea.link at) AND, because this sidecar
-  # is attached to the `proxy` bridge, it can reach every backend container by
-  # name via Docker's embedded resolver (127.0.0.11).
-  #
-  # TS_ACCEPT_DNS=false is deliberate: we do NOT want tailscaled to rewrite
-  # resolv.conf to 100.100.100.100 in this netns. Caddy only needs to resolve
-  # (a) backend container names -> Docker 127.0.0.11, and (b) public names for
-  # the ACME DNS-01 challenge -> Docker forwards those upstream. Nothing here
-  # ever needs to resolve a ts.net name.
+  # Caddy shares this Tailscale netns; keep DNS on Docker's resolver so backend
+  # container names and ACME DNS-01 lookups both resolve correctly.
   tailscale-caddy:
     image: ghcr.io/tailscale/tailscale:latest
     container_name: tailscale-caddy
@@ -39,9 +31,7 @@ services:
     depends_on:
       - tailscale-caddy
     volumes:
-      # Mount the directory (not the file) so in-place edits are visible to the
-      # running container — a single-file bind mount pins the inode and silently
-      # serves a stale Caddyfile after edits.
+      # Mount the directory so in-place Caddyfile edits are visible.
       - ./conf:/etc/caddy:ro
       - ./data:/data
       - ./config:/config

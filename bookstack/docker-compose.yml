@@ -35,9 +35,6 @@ services:
       - MYSQL_PASSWORD=${DB_PASSWORD}
     volumes:
       - ./mariadb:/config
-    # ports:
-    #   - 3306:3306
-
     restart: always
 
   tunnel:
