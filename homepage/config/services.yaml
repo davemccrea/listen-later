@@ -17,8 +17,8 @@
         statusStyle: "dot"
         icon: adguard-home.svg
     - Beszel:
-        href: http://100.98.242.21:8090
-        siteMonitor: http://100.98.242.21:8090
+        href: https://beszel.mccrea.link
+        siteMonitor: https://beszel.mccrea.link
         statusStyle: "dot"
         icon: beszel.svg
 
@@ -29,8 +29,8 @@
         statusStyle: "dot"
         icon: bookstack.svg
     - Paperless-ngx:
-        href: http://100.95.0.84:8000
-        siteMonitor: http://100.95.0.84:8000
+        href: https://paperless.mccrea.link
+        siteMonitor: https://paperless.mccrea.link
         statusStyle: "dot"
         icon: paperless-ngx.svg
     - Stirling PDF:
@@ -48,37 +48,37 @@
 
 - Media:
     - Jellyfin:
-        href: http://100.86.11.60:8096
-        siteMonitor: http://100.86.11.60:8096
+        href: https://jellyfin.mccrea.link
+        siteMonitor: https://jellyfin.mccrea.link
         statusStyle: "dot"
         icon: jellyfin.svg
     - Navidrome:
-        href: http://100.119.32.95:4533
-        siteMonitor: http://100.119.32.95:4533
+        href: https://navidrome.mccrea.link
+        siteMonitor: https://navidrome.mccrea.link
         statusStyle: "dot"
         icon: navidrome.svg
     - Immich:
-        href: http://100.85.34.58:2283
-        siteMonitor: http://100.85.34.58:2283
+        href: https://immich.mccrea.link
+        siteMonitor: https://immich.mccrea.link
         statusStyle: "dot"
         icon: immich.svg
     - SABnzbd:
-        href: http://100.85.220.21:8080
-        siteMonitor: http://100.85.220.21:8080
+        href: https://sabnzbd.mccrea.link
+        siteMonitor: https://sabnzbd.mccrea.link
         statusStyle: "dot"
         icon: sabnzbd.svg
     - Radarr:
-        href: http://100.118.118.93:7878
-        siteMonitor: http://100.118.118.93:7878
+        href: https://radarr.mccrea.link
+        siteMonitor: https://radarr.mccrea.link
         statusStyle: "dot"
         icon: radarr.svg
     - Sonarr:
-        href: http://100.109.247.96:8989
-        siteMonitor: http://100.109.247.96:8989
+        href: https://sonarr.mccrea.link
+        siteMonitor: https://sonarr.mccrea.link
         statusStyle: "dot"
         icon: sonarr.svg
     - Prowlarr:
-        href: http://100.103.138.106:9696
-        siteMonitor: http://100.103.138.106:9696
+        href: https://prowlarr.mccrea.link
+        siteMonitor: https://prowlarr.mccrea.link
         statusStyle: "dot"
         icon: prowlarr.svg
