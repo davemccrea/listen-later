@@ -26,6 +26,9 @@ services:
     build: .
     image: caddy-cloudflare:local
     container_name: caddy
+    # Drop to a non-root uid. The caddy binary has cap_net_bind_service=ep, so
+    # it can still bind 443 in the shared netns without root.
+    user: "1000:1000"
     env_file: .env
     network_mode: service:tailscale-caddy
     depends_on:
