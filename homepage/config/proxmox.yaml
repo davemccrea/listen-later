@@ -1,4 +1,5 @@
 ---
-url: https://192.168.1.100:8006
-token: api@pam!homepage
-secret: "{{HOMEPAGE_VAR_PROXMOX_TOKEN}}"
+# pve:
+#   url: https://proxmox.host.or.ip:8006
+#   token: username@pam!Token ID
+#   secret: secret
