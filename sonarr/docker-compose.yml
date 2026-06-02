@@ -10,13 +10,6 @@ services:
       - ./config:/config
       - /opt/stacks/shared/downloads:/downloads
       - /mnt/Media/TV:/tv
-    networks:
-      - proxy
     ports:
       - "192.168.1.102:8989:8989"
     restart: always
-
-networks:
-  proxy:
-    name: proxy
-    external: true

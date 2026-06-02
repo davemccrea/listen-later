@@ -10,13 +10,6 @@ services:
       - ./config:/config
       - /opt/stacks/shared/downloads:/downloads
       - /mnt/Media/Movies:/movies
-    networks:
-      - proxy
     ports:
       - "192.168.1.102:7878:7878"
     restart: always
-
-networks:
-  proxy:
-    name: proxy
-    external: true

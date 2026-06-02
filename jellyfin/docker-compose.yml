@@ -14,13 +14,6 @@ services:
       - /mnt/Media/Movies:/data/movies
     devices:
       - /dev/dri:/dev/dri
-    networks:
-      - proxy
     ports:
       - "192.168.1.102:8096:8096"
     restart: unless-stopped
-
-networks:
-  proxy:
-    name: proxy
-    external: true

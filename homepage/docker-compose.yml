@@ -12,13 +12,5 @@ services:
     volumes:
       - ./config:/app/config
       - /var/run/docker.sock:/var/run/docker.sock:ro
-    networks:
-      - proxy
-    ports:
-      - "192.168.1.102:3000:3000"
+    network_mode: host
     restart: always
-
-networks:
-  proxy:
-    name: proxy
-    external: true

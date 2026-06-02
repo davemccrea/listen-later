@@ -25,9 +25,6 @@ services:
       - broker
       - gotenberg
       - tika
-    networks:
-      - default
-      - proxy
     ports:
       - "192.168.1.102:8000:8000"
     volumes:
@@ -54,8 +51,3 @@ services:
     image: docker.io/apache/tika:latest
     restart: unless-stopped
 
-networks:
-  default:
-  proxy:
-    name: proxy
-    external: true

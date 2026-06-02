@@ -16,9 +16,6 @@ services:
     depends_on:
       - redis
       - database
-    networks:
-      - default
-      - proxy
     ports:
       - "192.168.1.102:2283:2283"
     restart: always
@@ -55,12 +52,6 @@ services:
       - ${DB_DATA_LOCATION}:/var/lib/postgresql/data
     shm_size: 128mb
     restart: always
-
-networks:
-  default:
-  proxy:
-    name: proxy
-    external: true
 
 volumes:
   model-cache:

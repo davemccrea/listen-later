@@ -4,8 +4,6 @@ services:
     container_name: beszel
     volumes:
       - ./data:/beszel_data
-    networks:
-      - proxy
     # Keep the hub reachable on the host loopback so the host-mode
     # beszel-agent (HUB_URL=http://localhost:8090) can still connect.
     ports:
@@ -26,8 +24,3 @@ services:
       KEY: 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILryqU32NmaM3C9bLUnibocGiR2YwYdtxtXLePcfcWVs'
       TOKEN: aece19f1-f595-49f1-be7e-3b17a024e819
       HUB_URL: http://127.0.0.1:8090
-
-networks:
-  proxy:
-    name: proxy
-    external: true

@@ -7,8 +7,6 @@ services:
     volumes:
       - "./config:/data"
       - "/mnt/Media/Music:/music:ro"
-    networks:
-      - proxy
     ports:
       - "192.168.1.102:4533:4533"
     env_file: .env
@@ -17,8 +15,3 @@ services:
       ND_SPOTIFY_ID: ${ND_SPOTIFY_ID}
       ND_SPOTIFY_SECRET: ${ND_SPOTIFY_SECRET}
       ND_ENABLEEXTERNALSERVICES: true
-
-networks:
-  proxy:
-    name: proxy
-    external: true
