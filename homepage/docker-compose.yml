@@ -3,7 +3,7 @@ services:
     image: ghcr.io/gethomepage/homepage:latest
     container_name: homepage
     environment:
-      HOMEPAGE_ALLOWED_HOSTS: homepage.mccrea.link
+      HOMEPAGE_ALLOWED_HOSTS: homepage.mccrea.link,192.168.1.102:3000
       PUID: 1000
       PGID: 1000
     env_file:
@@ -11,6 +11,5 @@ services:
         required: false
     volumes:
       - ./config:/app/config
-      - /var/run/docker.sock:/var/run/docker.sock:ro
     network_mode: host
     restart: always
