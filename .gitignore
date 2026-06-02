@@ -8,6 +8,7 @@ bookstack/config/
 sonarr/config/
 radarr/config/
 prowlarr/config/
+bazarr/config/
 navidrome/config/
 
 # Service config files that contain credentials or runtime state
