@@ -12,6 +12,8 @@ services:
       - /opt/stacks/shared/incomplete-downloads:/incomplete-downloads
     networks:
       - proxy
+    ports:
+      - "192.168.1.102:8080:8080"
     restart: always
 
 networks:

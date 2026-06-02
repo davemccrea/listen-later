@@ -9,6 +9,8 @@ services:
       - "/mnt/Media/Music:/music:ro"
     networks:
       - proxy
+    ports:
+      - "192.168.1.102:4533:4533"
     env_file: .env
     environment:
       ND_COVERARTPRIORITY: folder.*

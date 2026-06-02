@@ -12,6 +12,8 @@ services:
       - /mnt/Media/Movies:/movies
     networks:
       - proxy
+    ports:
+      - "192.168.1.102:7878:7878"
     restart: always
 
 networks:

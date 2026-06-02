@@ -12,6 +12,8 @@ services:
       - /mnt/Media/TV:/tv
     networks:
       - proxy
+    ports:
+      - "192.168.1.102:8989:8989"
     restart: always
 
 networks:

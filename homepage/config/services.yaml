@@ -1,8 +1,5 @@
 ---
 - Infrastructure:
-    - Tailscale IDP:
-        href: https://100.88.0.39
-        icon: tailscale.svg
     - Proxmox VE:
         href: https://100.92.229.102:8006
         icon: proxmox.svg
@@ -18,7 +15,7 @@
         icon: adguard-home.svg
     - Beszel:
         href: https://beszel.mccrea.link
-        siteMonitor: https://beszel.mccrea.link
+        siteMonitor: http://beszel:8090
         statusStyle: "dot"
         icon: beszel.svg
 
@@ -30,14 +27,9 @@
         icon: bookstack.svg
     - Paperless-ngx:
         href: https://paperless.mccrea.link
-        siteMonitor: https://paperless.mccrea.link
+        siteMonitor: http://paperless:8000
         statusStyle: "dot"
         icon: paperless-ngx.svg
-    - Stirling PDF:
-        href: http://100.103.220.108:8080
-        siteMonitor: http://100.103.220.108:8080
-        statusStyle: "dot"
-        icon: stirling-pdf.svg
 
 - Home Automation:
     - Home Assistant:
@@ -49,36 +41,36 @@
 - Media:
     - Jellyfin:
         href: https://jellyfin.mccrea.link
-        siteMonitor: https://jellyfin.mccrea.link
+        siteMonitor: http://jellyfin:8096
         statusStyle: "dot"
         icon: jellyfin.svg
     - Navidrome:
         href: https://navidrome.mccrea.link
-        siteMonitor: https://navidrome.mccrea.link
+        siteMonitor: http://navidrome:4533
         statusStyle: "dot"
         icon: navidrome.svg
     - Immich:
         href: https://immich.mccrea.link
-        siteMonitor: https://immich.mccrea.link
+        siteMonitor: http://immich_server:2283
         statusStyle: "dot"
         icon: immich.svg
     - SABnzbd:
         href: https://sabnzbd.mccrea.link
-        siteMonitor: https://sabnzbd.mccrea.link
+        siteMonitor: http://sabnzbd:8080/sabnzbd/
         statusStyle: "dot"
         icon: sabnzbd.svg
     - Radarr:
         href: https://radarr.mccrea.link
-        siteMonitor: https://radarr.mccrea.link
+        siteMonitor: http://radarr:7878
         statusStyle: "dot"
         icon: radarr.svg
     - Sonarr:
         href: https://sonarr.mccrea.link
-        siteMonitor: https://sonarr.mccrea.link
+        siteMonitor: http://sonarr:8989
         statusStyle: "dot"
         icon: sonarr.svg
     - Prowlarr:
         href: https://prowlarr.mccrea.link
-        siteMonitor: https://prowlarr.mccrea.link
+        siteMonitor: http://prowlarr:9696
         statusStyle: "dot"
         icon: prowlarr.svg

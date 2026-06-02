@@ -10,6 +10,7 @@ services:
     # beszel-agent (HUB_URL=http://localhost:8090) can still connect.
     ports:
       - "127.0.0.1:8090:8090"
+      - "192.168.1.102:8090:8090"
     restart: unless-stopped
 
   beszel-agent:
