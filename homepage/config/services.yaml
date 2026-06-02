@@ -71,6 +71,11 @@
         siteMonitor: http://192.168.1.102:8989
         statusStyle: "dot"
         icon: sonarr.svg
+    - Bazarr:
+        href: https://bazarr.mccrea.link
+        siteMonitor: http://192.168.1.102:6767
+        statusStyle: "dot"
+        icon: bazarr.svg
     - Prowlarr:
         href: https://prowlarr.mccrea.link
         siteMonitor: http://192.168.1.102:9696
