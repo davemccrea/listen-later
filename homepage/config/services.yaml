@@ -1,16 +1,18 @@
 ---
 - Infrastructure:
     - Proxmox VE:
-        href: https://100.92.229.102:8006
+        href: https://proxmox.mccrea.link
+        siteMonitor: https://proxmox.mccrea.link
+        statusStyle: "dot"
         icon: proxmox.svg
     - OpenMediaVault:
-        href: http://192.168.1.104
-        siteMonitor: http://192.168.1.104
+        href: https://omv.mccrea.link
+        siteMonitor: https://omv.mccrea.link
         statusStyle: "dot"
         icon: openmediavault.svg
     - AdGuard Home:
-        href: http://100.64.31.2
-        siteMonitor: http://100.64.31.2
+        href: https://adguard.mccrea.link
+        siteMonitor: https://adguard.mccrea.link
         statusStyle: "dot"
         icon: adguard-home.svg
     - Beszel:
@@ -33,8 +35,8 @@
 
 - Home Automation:
     - Home Assistant:
-        href: http://192.168.1.103:8123
-        siteMonitor: http://192.168.1.103:8123
+        href: https://hass.mccrea.link
+        siteMonitor: https://hass.mccrea.link
         statusStyle: "dot"
         icon: home-assistant.svg
 
