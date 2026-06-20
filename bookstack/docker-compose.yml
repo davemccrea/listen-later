@@ -16,9 +16,6 @@ services:
       - DB_PASSWORD=${DB_PASSWORD}
     volumes:
       - ./config:/config
-    networks:
-      - default
-      - shared
     restart: always
 
   mariadb:
@@ -45,9 +42,3 @@ services:
     env_file: .env
     environment:
       - TUNNEL_TOKEN=${TUNNEL_TOKEN}
-
-networks:
-  default:
-  shared:
-    name: homelab
-    external: true
