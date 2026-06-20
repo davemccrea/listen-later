@@ -1,0 +1,35 @@
+services:
+  fetcher:
+    build: .
+    image: listen-later:local
+    container_name: listen-later
+    restart: unless-stopped
+    env_file: .env          # PLAYLIST_URL, PODCAST_*, POLL_INTERVAL
+    environment:
+      - TZ=Europe/Helsinki
+    volumes:
+      - ./data:/data        # /data/public (served) + /data/state (yt-dlp state)
+
+  caddy:
+    image: caddy:2-alpine
+    container_name: listen-later-caddy
+    restart: unless-stopped
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./data/public:/srv:ro
+      - caddy_data:/data
+      - caddy_config:/config
+
+  tunnel:
+    image: cloudflare/cloudflared
+    container_name: listen-later-tunnel
+    restart: unless-stopped
+    command: tunnel run
+    depends_on:
+      - caddy
+    environment:
+      - TUNNEL_TOKEN=${TUNNEL_TOKEN}
+
+volumes:
+  caddy_data:
+  caddy_config:

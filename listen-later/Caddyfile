@@ -1,0 +1,15 @@
+# Serves ./data/public (feed.xml + audio/) at the web root. The Cloudflare tunnel
+# exposes this container at listen-later.mccrea.link, so the feed is at
+# https://listen-later.mccrea.link/feed.xml and audio at /audio/<id>.mp3.
+#
+# The feed is public (no auth) so it works in every podcast app. The noindex
+# header only keeps it out of search results; it does not restrict access.
+:80 {
+	root * /srv
+	encode gzip
+
+	# Keep the audio out of search-engine results (does not restrict access).
+	header X-Robots-Tag "noindex, nofollow"
+
+	file_server
+}
