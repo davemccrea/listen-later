@@ -7,7 +7,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Helsinki
-      - JELLYFIN_PublishedServerUrl=https://jellyfin.mccrea.link
+      - JELLYFIN_PublishedServerUrl=https://jellyfin.internal.mccrea.link
     volumes:
       - ./config:/config
       - /mnt/Media/TV:/data/tvshows

@@ -1,22 +1,22 @@
 ---
 - Infrastructure:
     - Proxmox VE:
-        href: https://pve.mccrea.link
+        href: https://pve.internal.mccrea.link
         siteMonitor: https://192.168.1.100:8006
         statusStyle: "dot"
         icon: proxmox.svg
     - OpenMediaVault:
-        href: https://omv.mccrea.link
+        href: https://omv.internal.mccrea.link
         siteMonitor: http://192.168.1.104
         statusStyle: "dot"
         icon: openmediavault.svg
     - AdGuard Home:
-        href: https://adguard.mccrea.link
+        href: https://adguard.internal.mccrea.link
         siteMonitor: http://192.168.1.105
         statusStyle: "dot"
         icon: adguard-home.svg
     - Beszel:
-        href: https://beszel.mccrea.link
+        href: https://beszel.internal.mccrea.link
         siteMonitor: http://192.168.1.102:8090
         statusStyle: "dot"
         icon: beszel.svg
@@ -28,56 +28,56 @@
         statusStyle: "dot"
         icon: bookstack.svg
     - Paperless-ngx:
-        href: https://paperless.mccrea.link
+        href: https://paperless.internal.mccrea.link
         siteMonitor: http://192.168.1.102:8000
         statusStyle: "dot"
         icon: paperless-ngx.svg
 
 - Home Automation:
     - Home Assistant:
-        href: https://hass.mccrea.link
+        href: https://hass.internal.mccrea.link
         siteMonitor: http://192.168.1.103:8123
         statusStyle: "dot"
         icon: home-assistant.svg
 
 - Media:
     - Jellyfin:
-        href: https://jellyfin.mccrea.link
+        href: https://jellyfin.internal.mccrea.link
         siteMonitor: http://192.168.1.102:8096
         statusStyle: "dot"
         icon: jellyfin.svg
     - Navidrome:
-        href: https://navidrome.mccrea.link
+        href: https://navidrome.internal.mccrea.link
         siteMonitor: http://192.168.1.102:4533
         statusStyle: "dot"
         icon: navidrome.svg
     - Immich:
-        href: https://immich.mccrea.link
+        href: https://immich.internal.mccrea.link
         siteMonitor: http://192.168.1.102:2283
         statusStyle: "dot"
         icon: immich.svg
     - SABnzbd:
-        href: https://sabnzbd.mccrea.link
+        href: https://sabnzbd.internal.mccrea.link
         siteMonitor: http://192.168.1.102:8080/sabnzbd/
         statusStyle: "dot"
         icon: sabnzbd.svg
     - Radarr:
-        href: https://radarr.mccrea.link
+        href: https://radarr.internal.mccrea.link
         siteMonitor: http://192.168.1.102:7878
         statusStyle: "dot"
         icon: radarr.svg
     - Sonarr:
-        href: https://sonarr.mccrea.link
+        href: https://sonarr.internal.mccrea.link
         siteMonitor: http://192.168.1.102:8989
         statusStyle: "dot"
         icon: sonarr.svg
     - Bazarr:
-        href: https://bazarr.mccrea.link
+        href: https://bazarr.internal.mccrea.link
         siteMonitor: http://192.168.1.102:6767
         statusStyle: "dot"
         icon: bazarr.svg
     - Prowlarr:
-        href: https://prowlarr.mccrea.link
+        href: https://prowlarr.internal.mccrea.link
         siteMonitor: http://192.168.1.102:9696
         statusStyle: "dot"
         icon: prowlarr.svg
