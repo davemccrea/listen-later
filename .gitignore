@@ -3,6 +3,10 @@
 **/docker-compose.env
 tsdproxy/config/.authkey
 
+# Python bytecode caches
+**/__pycache__/
+*.pyc
+
 # Service config dirs that are entirely runtime state
 bookstack/config/
 sonarr/config/
