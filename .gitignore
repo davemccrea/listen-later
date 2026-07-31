@@ -15,6 +15,7 @@ prowlarr/config/
 bazarr/config/
 navidrome/config/
 audiobookshelf/config/
+calibre-web-automated/config/
 
 # Service config files that contain credentials or runtime state
 sabnzbd/config/sabnzbd.ini
@@ -59,3 +60,4 @@ bookstack/mariadb/
 plex/config/
 shared/
 audiobookshelf/metadata/
+calibre-web-automated/calibre-library/

@@ -1,0 +1,30 @@
+---
+services:
+  calibre-web-automated:
+    image: crocodilestick/calibre-web-automated:latest
+    container_name: calibre-web-automated
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Helsinki
+      - NETWORK_SHARE_MODE=false
+      - TRUSTED_PROXY_COUNT=1
+    volumes:
+      - ./config:/config
+      - ./ingest:/cwa-book-ingest
+      - ./calibre-library:/calibre-library
+      - ./calibre-plugins:/config/.config/calibre/plugins
+    ports:
+      - 8083:8083
+    restart: unless-stopped
+
+  tunnel:
+    container_name: calibre-web-automated-tunnel
+    image: cloudflare/cloudflared
+    restart: unless-stopped
+    command: tunnel run
+    depends_on:
+      - calibre-web-automated
+    env_file: .env
+    environment:
+      - TUNNEL_TOKEN=${TUNNEL_TOKEN}
