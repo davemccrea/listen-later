@@ -20,6 +20,11 @@
         siteMonitor: http://192.168.1.102:8090
         statusStyle: "dot"
         icon: beszel.svg
+    - n8n:
+        href: https://n8n.internal.mccrea.link
+        siteMonitor: http://192.168.1.102:5678
+        statusStyle: "dot"
+        icon: n8n.svg
 
 - Documents:
     - BookStack:
@@ -46,6 +51,11 @@
         siteMonitor: http://192.168.1.102:8096
         statusStyle: "dot"
         icon: jellyfin.svg
+    - Seerr:
+        href: https://seerr.internal.mccrea.link
+        siteMonitor: http://192.168.1.102:5055
+        statusStyle: "dot"
+        icon: jellyseerr.svg
     - Navidrome:
         href: https://navidrome.internal.mccrea.link
         siteMonitor: http://192.168.1.102:4533
@@ -81,3 +91,13 @@
         siteMonitor: http://192.168.1.102:9696
         statusStyle: "dot"
         icon: prowlarr.svg
+    - Audiobookshelf:
+        href: https://audiobookshelf.internal.mccrea.link
+        siteMonitor: http://192.168.1.102:13378
+        statusStyle: "dot"
+        icon: audiobookshelf.svg
+    - Calibre-Web:
+        href: https://calibre.internal.mccrea.link
+        siteMonitor: http://192.168.1.102:8083
+        statusStyle: "dot"
+        icon: calibre.svg
