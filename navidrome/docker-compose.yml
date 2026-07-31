@@ -11,7 +11,7 @@ services:
       - "192.168.1.102:4533:4533"
     env_file: .env
     environment:
-      ND_COVERARTPRIORITY: folder.*
+      ND_COVERARTPRIORITY: cover.*, folder.*, front.*, embedded
       ND_SPOTIFY_ID: ${ND_SPOTIFY_ID}
       ND_SPOTIFY_SECRET: ${ND_SPOTIFY_SECRET}
       ND_ENABLEEXTERNALSERVICES: true
