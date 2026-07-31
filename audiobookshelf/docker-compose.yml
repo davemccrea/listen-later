@@ -1,0 +1,14 @@
+services:
+  audiobookshelf:
+    image: ghcr.io/advplyr/audiobookshelf:latest
+    ports:
+      - 13378:80
+    volumes:
+      - ./config:/config
+      - ./metadata:/metadata
+      - /mnt/Media/Audiobooks:/audiobooks
+      - /mnt/Media/Podcasts:/podcasts
+    environment:
+      - TZ=Europe/Helsinki
+    restart: unless-stopped
+    user: 1000:1000

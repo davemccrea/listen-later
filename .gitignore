@@ -14,6 +14,7 @@ radarr/config/
 prowlarr/config/
 bazarr/config/
 navidrome/config/
+audiobookshelf/config/
 
 # Service config files that contain credentials or runtime state
 sabnzbd/config/sabnzbd.ini
@@ -57,3 +58,4 @@ paperless-ngx/redisdata/
 bookstack/mariadb/
 plex/config/
 shared/
+audiobookshelf/metadata/
