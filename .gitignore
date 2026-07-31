@@ -26,6 +26,8 @@ seerr/config/db/
 seerr/config/logs/
 seerr/config/settings.json
 seerr/config/settings.old.json
+seerr/config/anime-list.xml
+seerr/config/cache/
 
 # Homepage logs (config yaml files are worth keeping)
 homepage/config/logs/
