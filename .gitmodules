@@ -1,0 +1,3 @@
+[submodule "cardsmith"]
+	path = cardsmith
+	url = git@github.com:davemccrea/cardsmith.git
