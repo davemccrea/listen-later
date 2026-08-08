@@ -6,8 +6,9 @@ services:
     volumes:
       - ./config:/config
       - ./metadata:/metadata
-      - /mnt/Media/Audiobooks:/audiobooks
-      - /mnt/Media/Podcasts:/podcasts
+      # Hardlinks made by the qBittorrent completion script; the bytes are shared
+      # with the seeding torrents, so this costs no extra disk.
+      - ../qbittorrent/downloads/_library/audiobooks:/audiobooks
     environment:
       - TZ=Europe/Helsinki
     restart: unless-stopped

@@ -11,6 +11,11 @@ services:
     volumes:
       - ./config:/config
       - ./downloads:/downloads #optional
+      - ./scripts:/scripts:ro
+      # NB: the CWA ingest folder and the Audiobookshelf library live *inside*
+      # ./downloads on purpose. Hardlinks cannot cross mount points, even when
+      # both sides are the same host filesystem, so everything the completion
+      # script links between has to sit under this one bind mount.
     ports:
       - "192.168.1.102:8081:8081"
       - 51413:51413

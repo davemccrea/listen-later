@@ -11,7 +11,9 @@ services:
       - TRUSTED_PROXY_COUNT=1
     volumes:
       - ./config:/config
-      - ./ingest:/cwa-book-ingest
+      # Lives inside the qBittorrent downloads tree so the completion script can
+      # hardlink finished books in without crossing a mount point.
+      - ../qbittorrent/downloads/_ingest:/cwa-book-ingest
       - ./calibre-library:/calibre-library
       - ./calibre-plugins:/config/.config/calibre/plugins
     ports:
