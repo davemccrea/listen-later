@@ -71,6 +71,11 @@
         siteMonitor: http://192.168.1.102:8080/sabnzbd/
         statusStyle: "dot"
         icon: sabnzbd.svg
+    - qBittorrent:
+        href: https://qbittorrent.internal.mccrea.link
+        siteMonitor: http://192.168.1.102:8081
+        statusStyle: "dot"
+        icon: qbittorrent.svg
     - Radarr:
         href: https://radarr.internal.mccrea.link
         siteMonitor: http://192.168.1.102:7878
