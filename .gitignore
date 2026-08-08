@@ -16,6 +16,7 @@ bazarr/config/
 navidrome/config/
 audiobookshelf/config/
 calibre-web-automated/config/
+qbittorrent/config/
 
 # Service config files that contain credentials or runtime state
 sabnzbd/config/sabnzbd.ini
@@ -63,3 +64,4 @@ plex/config/
 shared/
 audiobookshelf/metadata/
 calibre-web-automated/calibre-library/
+qbittorrent/downloads/
