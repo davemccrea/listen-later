@@ -45,6 +45,7 @@ vaultwarden/data/
 beszel/data/
 beszel/beszel_agent_data/
 tsidp/data/
+mousehole/data/
 
 # listen-later: downloaded audio + generated feed + yt-dlp state (runtime data)
 listen-later/data/

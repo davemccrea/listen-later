@@ -1,0 +1,17 @@
+services:
+  mousehole:
+    image: tmmrtn/mousehole:latest
+    container_name: mousehole
+    environment:
+      TZ: Europe/Helsinki
+      # Served on the LAN, not localhost, so auth + allowlists are required.
+      MOUSEHOLE_AUTH_PASSWORD: ${MOUSEHOLE_AUTH_PASSWORD}
+      MOUSEHOLE_ALLOWED_HOSTS: 192.168.1.102:5010,localhost:5010,127.0.0.1:5010
+      MOUSEHOLE_ALLOWED_ORIGINS: http://192.168.1.102:5010
+    volumes:
+      # Persists the MAM session cookie across restarts.
+      - ./data:/var/lib/mousehole
+    ports:
+      - "192.168.1.102:5010:5010"
+    env_file: .env
+    restart: always
