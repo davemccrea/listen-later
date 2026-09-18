@@ -37,6 +37,11 @@
         siteMonitor: http://192.168.1.102:8000
         statusStyle: "dot"
         icon: paperless-ngx.svg
+    - FreshRSS:
+        href: https://freshrss.mccrea.link
+        siteMonitor: http://192.168.1.102:8084
+        statusStyle: "dot"
+        icon: freshrss.svg
 
 - Home Automation:
     - Home Assistant:
