@@ -7,8 +7,9 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ../beszel/beszel_agent_data:/var/lib/beszel-agent
+    # TOKEN comes from .env (Beszel hub → system settings).
+    env_file: .env
     environment:
       LISTEN: 45876
       KEY: 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILryqU32NmaM3C9bLUnibocGiR2YwYdtxtXLePcfcWVs'
-      TOKEN: aece19f1-f595-49f1-be7e-3b17a024e819
       HUB_URL: http://127.0.0.1:8090
