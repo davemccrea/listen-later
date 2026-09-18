@@ -55,15 +55,11 @@ listen-later/data/
 immich/library/
 immich/postgres/
 immich/model-cache/
-paperless-ngx/data/
-paperless-ngx/media/
-paperless-ngx/export/
-paperless-ngx/consume/
-paperless-ngx/pgdata/
-paperless-ngx/redisdata/
 bookstack/mariadb/
 plex/config/
 shared/
 audiobookshelf/metadata/
 calibre-web-automated/calibre-library/
 qbittorrent/downloads/
+papra/app-data/
+papra/ingestion/
